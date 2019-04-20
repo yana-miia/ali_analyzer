@@ -1,17 +1,18 @@
 class User:
     """
-    Represents user.
+    Represents a user.
     Base class for Seller and Buyer.
     """
+
     def __init__(self, nickname):
         """
-        Initialize user.
+        Initialize a user.
         """
         self.nickname = nickname
-        self.comand_list = []
+        self.command_list = []
 
     def get_comands(self):
-        print(self.comand_list)
+        print(self.command_list)
 
 
 if __name__ == '__main__':

@@ -1,5 +1,6 @@
 from user import User
-
+from ALI import get_best_sellings
+from pprint import pprint
 
 class Seller(User):
     """
@@ -14,21 +15,17 @@ class Seller(User):
         super().__init__(nickname)
         self.comand_list = ["search", "analyze"]
 
-    def get_id(self):
+    def names_of_best_products(self, sort_way, category_id):
         """
-        Return the id of the seller.
+        Get list og bestselling products in chosen category, sorted with chosen
+        sorting way.
         """
-    def get_shops(self):
-        """
-        Get the list of shops where the seller is trading.
-        """
-    def get_ratings(self):
-        """
-        Return the instance of SellerRatings class, which contains all details about
-        the ratings.
-        """
-
+        list_of_bests = []
+        for item in get_best_sellings(sort_way, category_id):
+            list_of_bests.append(item['title'])
+        return list_of_bests
 
 if __name__ == '__main__':
     seller = Seller("Solomiia")
     seller.get_comands()
+    pprint(seller.names_of_best_products("ORDERS", 100003070))

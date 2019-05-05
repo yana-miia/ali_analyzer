@@ -5,29 +5,57 @@ import aliseeksapi
 from aliseeksapi.rest import ApiException
 from pprint import pprint
 from product import Product
-# Configure API key authorization: ApiKeyAuth
+
+
 configuration = aliseeksapi.Configuration()
 configuration.api_key['X-API-CLIENT-ID'] = "RYXLKDJMKVVQZOXO"
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['X-API-CLIENT-ID'] = 'Bearer'
-def get_best_sellings(sort_way, category_id):
+
+
+
+
+
+def form_product(product_diction):
+    """
+    Form product from given dictionary.
+    Additional function for avoiding copypaste code.
+    """
+    if product_diction["seller"]["total_feedback"] == 0:
+        rating = 0
+    else:
+        rating = round(product_diction["seller"]["positive_feedback"]/\
+                            product_diction["seller"]["total_feedback"]*100,2)
+
+    product = Product(product_diction["title"],
+                      product_diction["category_id"],
+                      product_diction["price"]["value"],
+                      product_diction["freight"]["price"]["value"],
+                      product_diction["price"]["currency"],
+                      product_diction["orders"],
+                      product_diction["seller"]["store_name"],
+                      rating)
+    return product
+
+
+
+
+
+def get_best_sellings(category_id=None):
+    """
+    Get best selling list in chosen category.
+    If you don't set category_id, it will find best selling in all categories.
+    """
     api_instance = aliseeksapi.SearchApi(aliseeksapi.ApiClient(configuration))
-    search_request = aliseeksapi.SearchRequest(sort=sort_way, category=category_id) # SearchRequest | Search request body
+    search_request = aliseeksapi.SearchRequest(sort="ORDERS",
+                                            category=category_id,
+                                            sort_direction='DESC')
 
     try:
-        # Searches AliExpress in non-realtime. Uses the Aliseeks.com datasource which is continually updated from AliExpress.
         api_response = api_instance.search(search_request)
         buffer = ast.literal_eval(str(api_response))["items"]
         result = []
         for diction in buffer:
             if diction["title"] != None and diction["title"] != "":
-                product = Product(diction["title"],
-                                  diction["category_id"],
-                                  diction["price"]["value"],
-                                  diction["freight"]["price"]["value"],
-                                  diction["price"]["currency"],
-                                  diction["seller"]["store_name"],
-                                  round(diction["seller"]["positive_feedback"]/diction["seller"]["total_feedback"]*100,2))
+                product = form_product(diction)
                 result.append(product)
         return result
 
@@ -36,6 +64,41 @@ def get_best_sellings(sort_way, category_id):
         print("Exception when calling SearchApi->search: %s\n" % e)
         return None
 
+
+
+
+
+def get_details_about_product(product_name):
+    """
+    Get detailed information about a product.
+    """
+    api_instance = aliseeksapi.SearchApi(aliseeksapi.ApiClient(configuration))
+    search_request = aliseeksapi.SearchRequest(text=product_name,
+                                            sort="BEST_MATCH",
+                                            order_range={"from": 50},
+                                            sort_direction='DESC',
+                                            limit=50)
+    try:
+        api_response = api_instance.search(search_request)
+        buffer = ast.literal_eval(str(api_response))["items"]
+        converted_response = {}
+
+        for diction in buffer:
+            if diction["title"] != None and diction["title"] != "":
+                product = form_product(diction)
+                converted_response[product.seller_name] = \
+                                {"price":product.price, "orders":product.orders}
+        return converted_response
+    except ApiException as e:
+        print("Exception when calling SearchApi->search: %s\n" % e)
+        return None
+
+
+
+
+
 if __name__ == "__main__":
-    for i in get_best_sellings("ORDERS", 100003070):
+    for i in get_best_sellings(100003070):
         print(i)
+    print("\n\n\n")
+    pprint(get_details_about_product("phone charger"))

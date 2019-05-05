@@ -15,17 +15,19 @@ class Seller(User):
         super().__init__(nickname)
         self.comand_list = ["search", "analyze"]
 
-    def names_of_best_products(self, sort_way, category_id):
+    def names_of_best_products(self, category=None):
         """
-        Get list og bestselling products in chosen category, sorted with chosen
+        Get list of bestselling products in chosen category, sorted with chosen
         sorting way.
         """
-        list_of_bests = []
-        for item in get_best_sellings(sort_way, category_id):
-            list_of_bests.append(item['title'])
+        category_id = Seller.main_categories[category]
+        list_of_bests = get_best_sellings(category_id)
         return list_of_bests
 
 if __name__ == '__main__':
     seller = Seller("Solomiia")
     seller.get_comands()
-    pprint(seller.names_of_best_products("ORDERS", 100003070))
+    for i in seller.names_of_best_products("Shoes"):
+        print(i)
+    print("\n\n\n")
+    pprint(Seller.main_categories)

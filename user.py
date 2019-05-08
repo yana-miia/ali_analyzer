@@ -4,6 +4,7 @@ class User:
     Base class for Seller and Buyer.
     """
     main_categories = {
+        "All":None,
         "Apparel for women": 100003109,
         "Apparel for men": 100003070,
         "Cellphones & Telecommunications": 509,
@@ -21,11 +22,9 @@ class User:
         "Weddings & Events": 100003235,
         "Novelty & Special Use": 200000875,
         "Automobiles & Motorcycles": 34,
-        "Lights & Lighting": 39,
         "Furniture": 1503,
         "Electronic Components & Supplies": 502,
         "Office & School": 21,
-        "Home Appliances Parts": 100000016,
         "Home Improvement": 13,
         "Security & Protection": 30,
         "Tools": 1420,

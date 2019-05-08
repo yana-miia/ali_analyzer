@@ -33,11 +33,35 @@ class Product:
         if self.seller_rating == None:
             self.seller_rating = 0
 
+    def __eq__(self, another):
+        """
+        Check if equal.
+        """
+        if self.title == another.title and\
+           self.category_id == another.category_id and\
+           self.price == another.price and\
+           self.fright_price == another.fright_price and\
+           self.currency == another.currency and\
+           self.orders == another.orders and\
+           self.seller_name == another.seller_name and\
+           self.seller_rating == another.seller_rating:
+           return True
+        else:
+           return False
+
+    def __ne__(self,another):
+        """
+        Check if not equal.
+        """
+        if self == another:
+            return False
+        else:
+            return True
+
     def __str__(self):
         """
         Return data about product.
         """
-        
         data = ""
         data += "Title: " + self.title + "\n" +\
                 "Category id: " + str(self.category_id) + "\n" +\
@@ -48,4 +72,3 @@ class Product:
                 "Seller name: " + self.seller_name + "\n" +\
                 "Seller rating: " + str(self.seller_rating) + "\n"
         return data
-

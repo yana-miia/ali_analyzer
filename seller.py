@@ -49,6 +49,10 @@ class Seller(User):
         return best_sellers
 
 
+
+
+
+
 if __name__ == '__main__':
     seller = Seller("Solomiia")
     print("Best Selling:")

@@ -6,11 +6,8 @@ from aliseeksapi.rest import ApiException
 from pprint import pprint
 from product import Product
 
-
 configuration = aliseeksapi.Configuration()
 configuration.api_key['X-API-CLIENT-ID'] = "RYXLKDJMKVVQZOXO"
-
-
 
 
 
@@ -34,8 +31,6 @@ def form_product(product_diction):
                       product_diction["seller"]["store_name"],
                       rating)
     return product
-
-
 
 
 
@@ -66,8 +61,6 @@ def get_best_sellings(category_id=None):
 
 
 
-
-
 def get_details_about_product(product_name):
     """
     Get detailed information about a product.
@@ -92,7 +85,6 @@ def get_details_about_product(product_name):
     except ApiException as e:
         print("Exception when calling SearchApi->search: %s\n" % e)
         return None
-
 
 
 

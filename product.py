@@ -2,9 +2,10 @@ class Product:
     """
     Represent product.
     """
-    def __init__(self, product_id=0, title='No Info', category_id=0,
-                 price=0, freight_price=0, currency='No Info', orders=0,
-                 seller_name='No Info', seller_rating=0):
+    def __init__(self, product_id='No Info', title='No Info',
+                 category_id='No Info', price='No Info',
+                 freight_price='No Info', currency='No Info', orders='No Info',
+                 seller_name='No Info', seller_rating='No Info'):
         """
         Initialize product.
         """
@@ -18,30 +19,24 @@ class Product:
         self.seller_name = seller_name
         self.seller_rating = seller_rating
 
-        self._valid()
-
-    def _valid(self):
-        """
-        Replace None fields.
-        """
         if self.product_id == None:
-            self.product_id = 0
+            self.product_id = 'No Info'
         if self.title == None:
             self.title = 'No Info'
         if self.category_id == None:
-            self.category_id = 0
+            self.category_id = 'No Info'
         if self.price == None:
-            self.price = 0
+            self.price = 'No Info'
         if self.freight_price == None:
-            self.freight_price = 0
+            self.freight_price = 'No Info'
         if self.currency == None:
             self.currency = 'No Info'
         if self.orders == None:
-            self.orders = 0
+            self.orders = 'No Info'
         if self.seller_name == None:
             self.seller_name = 'No Info'
         if self.seller_rating == None:
-            self.seller_rating = 0
+            self.seller_rating = 'No Info'
 
     def __eq__(self, another):
         """
@@ -67,12 +62,64 @@ class Product:
         """
         data = ""
         data += "Product id: " + str(self.product_id) + "\n" +\
-                "Title: " + self.title + "\n" +\
+                "Title: " + str(self.title) + "\n" +\
                 "Category id: " + str(self.category_id) + "\n" +\
                 "Price: " + str(self.price) + "\n" +\
                 "Freight price: " + str(self.freight_price) + "\n" +\
-                "Currency: " + self.currency + "\n" +\
+                "Currency: " + str(self.currency) + "\n" +\
                 "Orders: " + str(self.orders) + "\n" +\
-                "Seller name: " + self.seller_name + "\n" +\
+                "Seller name: " + str(self.seller_name) + "\n" +\
                 "Seller rating: " + str(self.seller_rating) + "\n"
         return data
+
+class DetailedProduct(Product):
+    """
+    Represent extended information about product.
+    """
+
+    def __init__(self, product_id='No Info', title='No Info',
+                 category_id='No Info', price='No Info',
+                 freight_price='No Info', currency='No Info', orders='No Info',
+                 seller_name='No Info', seller_rating='No Info',
+                 min_price='No Info', max_price='No Info',
+                 wishlist='No Info'):
+
+        super().__init__(product_id, title, category_id,
+                         price, freight_price, currency, orders,
+                         seller_name, seller_rating)
+
+        self.min_price = min_price
+        self.max_price = max_price
+        self.wishlist = wishlist
+
+        if self.product_id == None:
+            self.product_id = 'No Info'
+        if self.title == None:
+            self.title = 'No Info'
+        if self.category_id == None:
+            self.category_id = 'No Info'
+        if self.price == None:
+            self.price = 'No Info'
+        if self.freight_price == None:
+            self.freight_price = 'No Info'
+        if self.currency == None:
+            self.currency = 'No Info'
+        if self.orders == None:
+            self.orders = 'No Info'
+        if self.seller_name == None:
+            self.seller_name = 'No Info'
+        if self.seller_rating == None:
+            self.seller_rating = 'No Info'
+        if self.min_price == None:
+            self.min_price = 'No Info'
+        if self.max_price == None:
+            self.max_price = 'No Info'
+        if self.wishlist == None:
+            self.wishlist = 'No Info'
+
+
+    def __str__(self):
+        return super().__str__() +\
+               "Min price: " + str(self.min_price) + "\n" +\
+               "Max price: " + str(self.max_price) + "\n" +\
+               "Wish list count: " + str(self.wishlist) + "\n"

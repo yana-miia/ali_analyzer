@@ -4,7 +4,7 @@ import ast
 import aliseeksapi
 from aliseeksapi.rest import ApiException
 from pprint import pprint
-from product import Product
+from product import Product, DetailedProduct
 
 configuration = aliseeksapi.Configuration()
 configuration.api_key['X-API-CLIENT-ID'] = "RYXLKDJMKVVQZOXO"
@@ -13,7 +13,7 @@ configuration.api_key['X-API-CLIENT-ID'] = "RYXLKDJMKVVQZOXO"
 
 def form_product(product_diction):
     """
-    Form product from given dictionary.
+    Form Product from given dictionary.
     Additional function for avoiding copypaste code.
     """
     if product_diction["seller"]["total_feedback"] == 0:
@@ -33,6 +33,26 @@ def form_product(product_diction):
                       rating)
     return product
 
+
+def form_detailed_product(product_diction):
+    """
+    Form DetailedProduct from given dictionary.
+    Additional function for avoiding copypaste code.
+    """
+    min_price = product_diction["prices"][0]["min_amount"]["value"]
+    max_price = product_diction["prices"][0]["max_amount"]["value"]
+
+    product = DetailedProduct(product_diction["id"],
+                        product_diction["title"],
+                        product_diction["category_id"],
+                        (min_price + max_price)/2,
+                        'No Info',
+                        product_diction["prices"][0]["min_amount"]["currency"],
+                        product_diction["trade"]["sold"],
+                        "-", "-",
+                        min_price, max_price,
+                        product_diction["wish_list_count"])
+    return product
 
 
 def get_best_sellings(category_id=None):
@@ -57,12 +77,12 @@ def get_best_sellings(category_id=None):
 
 
     except ApiException as e:
-        print("Exception when calling SearchApi->search: %s\n" % e)
+        print("Error when calling SearchApi->get_best_sellings: %s\n" % e)
         return None
 
 
 
-def get_details_about_product(product_name):
+def search_products(product_name):
     """
     Get detailed information about a product.
     """
@@ -75,23 +95,38 @@ def get_details_about_product(product_name):
     try:
         api_response = api_instance.search(search_request)
         buffer = ast.literal_eval(str(api_response))["items"]
-        converted_response = {}
-
+        result = []
         for diction in buffer:
             if diction["title"] != None and diction["title"] != "":
                 product = form_product(diction)
-                converted_response[product.seller_name] = \
-                                {"price":product.price, "orders":product.orders}
-        return converted_response
+                result.append(product)
+        return result
+
     except ApiException as e:
-        print("Exception when calling SearchApi->search: %s\n" % e)
+        print("Error when calling SearchApi->search_products: %s\n" % e)
         return None
 
+def get_product_info_by_id(product_id):
+    """
+    Get details about one product by it's id.
+    """
+    api_instance = aliseeksapi.ProductsApi(aliseeksapi.ApiClient(configuration))
+    search_request = aliseeksapi.ProductRequest(product_id=product_id)
+    try:
+        api_response = api_instance.get_product_details(search_request)
+        buffer = ast.literal_eval(str(api_response))
+        return form_detailed_product(buffer)
 
+    except ApiException as e:
+        print("Error when calling ProductApi->get_product_info_by_id: %s\n" % e)
+        return None
 
-
+#uncomment blocks to test some function
 if __name__ == "__main__":
-    for i in get_best_sellings(100003070):
-        print(i)
-    print("\n\n\n")
-    pprint(get_details_about_product("phone charger"))
+    #for i in get_best_sellings(100003070):
+    #    print(i)
+    #print("\n\n\n")
+
+    #pprint(search_products("phone charger"))
+
+    print(get_product_info_by_id(32826890025))

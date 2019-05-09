@@ -1,5 +1,5 @@
 from user import User
-from ALI import get_best_sellings
+from ALI import get_best_sellings, search_products
 from pprint import pprint
 
 class Seller(User):
@@ -49,7 +49,15 @@ class Seller(User):
         return best_sellers
 
 
-
+    def get_product_statistic(self, product_name):
+        """
+        Return statistic about product selling.
+        """
+        statistic = {}
+        for product in search_products(product_name):
+            statistic[product.seller_name] = \
+                                {"price":product.price, "orders":product.orders}
+        return statistic
 
 
 
@@ -67,4 +75,8 @@ if __name__ == '__main__':
 
     #print("Best Sellers:")
     #pprint(seller.get_best_sellers())
+    #print("\n\n\n")
+
+    #print("Statistic about 'phone charger':")
+    #pprint(seller.get_product_statistic('phone charger'))
     #print("\n\n\n")

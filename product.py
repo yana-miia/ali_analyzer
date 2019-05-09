@@ -2,12 +2,13 @@ class Product:
     """
     Represent product.
     """
-    def __init__(self, title='No Info', category_id=0,
+    def __init__(self, product_id=0, title='No Info', category_id=0,
                  price=0, freight_price=0, currency='No Info', orders=0,
                  seller_name='No Info', seller_rating=0):
         """
         Initialize product.
         """
+        self.product_id = product_id
         self.title = title
         self.category_id = category_id
         self.price = price
@@ -16,6 +17,15 @@ class Product:
         self.orders = orders
         self.seller_name = seller_name
         self.seller_rating = seller_rating
+
+        self._valid()
+
+    def _valid(self):
+        """
+        Replace None fields.
+        """
+        if self.product_id == None:
+            self.product_id = 0
         if self.title == None:
             self.title = 'No Info'
         if self.category_id == None:
@@ -37,14 +47,7 @@ class Product:
         """
         Check if equal.
         """
-        if self.title == another.title and\
-           self.category_id == another.category_id and\
-           self.price == another.price and\
-           self.fright_price == another.fright_price and\
-           self.currency == another.currency and\
-           self.orders == another.orders and\
-           self.seller_name == another.seller_name and\
-           self.seller_rating == another.seller_rating:
+        if self.product_id == another.product_id:
            return True
         else:
            return False
@@ -63,7 +66,8 @@ class Product:
         Return data about product.
         """
         data = ""
-        data += "Title: " + self.title + "\n" +\
+        data += "Product id: " + str(self.product_id) + "\n" +\
+                "Title: " + self.title + "\n" +\
                 "Category id: " + str(self.category_id) + "\n" +\
                 "Price: " + str(self.price) + "\n" +\
                 "Freight price: " + str(self.freight_price) + "\n" +\

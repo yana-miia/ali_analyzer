@@ -55,12 +55,16 @@ class Seller(User):
 
 if __name__ == '__main__':
     seller = Seller("Solomiia")
-    print("Best Selling:")
-    for i in seller.get_best_products():
-        print(i)
-    print("\n\n\n")
-    print("Demand:")
-    pprint(seller.find_demand())
-    print("\n\n\n")
-    print("Best Sellers:")
-    pprint(seller.get_best_sellers())
+
+    #print("Best Selling:")
+    #for i in seller.get_best_products():
+    #    print(i)
+    #print("\n\n\n")
+
+    #print("Demand:")
+    #pprint(seller.find_demand())
+    #print("\n\n\n")
+
+    #print("Best Sellers:")
+    #pprint(seller.get_best_sellers())
+    #print("\n\n\n")

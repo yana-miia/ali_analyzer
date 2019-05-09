@@ -22,7 +22,8 @@ def form_product(product_diction):
         rating = round(product_diction["seller"]["positive_feedback"]/\
                             product_diction["seller"]["total_feedback"]*100,2)
 
-    product = Product(product_diction["title"],
+    product = Product(product_diction["id"],
+                      product_diction["title"],
                       product_diction["category_id"],
                       product_diction["price"]["value"],
                       product_diction["freight"]["price"]["value"],

@@ -52,7 +52,7 @@ class Product:
         """
         Check if products are different.
         """
-        return not self == another:
+        return not self == another
 
 
     def __str__(self):

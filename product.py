@@ -2,6 +2,8 @@ class Product:
     """
     Represent product.
     """
+
+
     def __init__(self, product_id='No Info', title='No Info',
                  category_id='No Info', price='No Info',
                  freight_price='No Info', currency='No Info', orders='No Info',
@@ -38,30 +40,26 @@ class Product:
         if self.seller_rating == None:
             self.seller_rating = 'No Info'
 
+
     def __eq__(self, another):
         """
-        Check if equal.
+        Check if products are same.
         """
-        if self.product_id == another.product_id:
-           return True
-        else:
-           return False
+        return self.product_id == another.product_id
+
 
     def __ne__(self,another):
         """
-        Check if not equal.
+        Check if products are different.
         """
-        if self == another:
-            return False
-        else:
-            return True
+        return not self == another:
+
 
     def __str__(self):
         """
-        Return data about product.
+        Return data about product as a string.
         """
-        data = ""
-        data += "Product id: " + str(self.product_id) + "\n" +\
+        return "Product id: " + str(self.product_id) + "\n" +\
                 "Title: " + str(self.title) + "\n" +\
                 "Category id: " + str(self.category_id) + "\n" +\
                 "Price: " + str(self.price) + "\n" +\
@@ -70,12 +68,13 @@ class Product:
                 "Orders: " + str(self.orders) + "\n" +\
                 "Seller name: " + str(self.seller_name) + "\n" +\
                 "Seller rating: " + str(self.seller_rating) + "\n"
-        return data
+
 
 class DetailedProduct(Product):
     """
-    Represent extended information about product.
+    Represent extended information about the product.
     """
+
 
     def __init__(self, product_id='No Info', title='No Info',
                  category_id='No Info', price='No Info',

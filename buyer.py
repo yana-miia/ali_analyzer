@@ -1,4 +1,6 @@
 from user import User
+from ALI import get_best_sellings, search_products
+from pprint import pprint
 
 
 class Buyer(User):
@@ -14,9 +16,16 @@ class Buyer(User):
         super().__init__(nickname)
         self.comand_list = ["find", "comparate"]
 
+
+    def __str__(self):
+        result = ''
+        for i in self.comand_list:
+            result += i + '\n'
+        return 'Commands of ' + self.nickname + ':\n' + result
+
     def get_id(self):
         """
-        Return the id of thge buyer.
+        Return the id of the buyer.
         """
 
     def get_ratings(self):
@@ -33,4 +42,4 @@ class Buyer(User):
 
 if __name__ == '__main__':
     buyer = Buyer("Yana")
-    buyer.get_comands()
+    print(str(buyer))

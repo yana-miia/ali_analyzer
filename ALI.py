@@ -10,11 +10,10 @@ configuration = aliseeksapi.Configuration()
 configuration.api_key['X-API-CLIENT-ID'] = "RYXLKDJMKVVQZOXO"
 
 
-
 def form_product(product_diction):
     """
     Form Product from given dictionary.
-    Additional function for avoiding copypaste code.
+    Additional function for avoiding repeating code.
     """
     if product_diction["seller"]["total_feedback"] == 0:
         rating = 0
@@ -37,7 +36,7 @@ def form_product(product_diction):
 def form_detailed_product(product_diction):
     """
     Form DetailedProduct from given dictionary.
-    Additional function for avoiding copypaste code.
+    Additional function for avoiding repeating code.
     """
     min_price = product_diction["prices"][0]["min_amount"]["value"]
     max_price = product_diction["prices"][0]["max_amount"]["value"]
@@ -81,10 +80,9 @@ def get_best_sellings(category_id=None):
         return None
 
 
-
 def search_products(product_name):
     """
-    Get detailed information about a product.
+    Get detailed information abou some type of  a product.
     """
     api_instance = aliseeksapi.SearchApi(aliseeksapi.ApiClient(configuration))
     search_request = aliseeksapi.SearchRequest(text=product_name,
@@ -105,6 +103,7 @@ def search_products(product_name):
     except ApiException as e:
         print("Error when calling SearchApi->search_products: %s\n" % e)
         return None
+
 
 def get_product_info_by_id(product_id):
     """

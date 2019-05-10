@@ -30,7 +30,7 @@ class Buyer(User):
         Get list of bestselling products in chosen category, sorted with chosen
         sorting way.
         """
-        category_id = Seller.main_categories[category]
+        category_id = Buyer.main_categories[category]
         list_of_bests = get_best_sellings(category_id)
         return list_of_bests
 
@@ -66,3 +66,5 @@ class Buyer(User):
 if __name__ == '__main__':
     buyer = Buyer("Yana")
     print(str(buyer))
+    pprint("Best sellers in the category:")
+    print(buyer.get_best_sellers())

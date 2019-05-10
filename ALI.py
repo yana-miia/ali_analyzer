@@ -82,7 +82,7 @@ def get_best_sellings(category_id=None):
 
 def search_products(product_name):
     """
-    Get detailed information abou some type of  a product.
+    Get detailed information about some type of  a product.
     """
     api_instance = aliseeksapi.SearchApi(aliseeksapi.ApiClient(configuration))
     search_request = aliseeksapi.SearchRequest(text=product_name,

@@ -2,11 +2,13 @@ from user import User
 from ALI import get_best_sellings, search_products
 from pprint import pprint
 
+
 class Seller(User):
     """
     Represent a seller.
     Subclass of User.
     """
+
 
     def __init__(self, nickname):
         """
@@ -14,6 +16,7 @@ class Seller(User):
         """
         super().__init__(nickname)
         self.comand_list = ["search", "analyze"]
+
 
     def get_best_products(self, category="All"):
         """
@@ -24,9 +27,12 @@ class Seller(User):
         list_of_bests = get_best_sellings(category_id)
         return list_of_bests
 
+
     def find_demand(self):
         """
         Find demand on each category in bestselling.
+        Return dictionary, where the keys are names of categories and tghe values
+        are quantities of orders in these categories.
         """
         demand = {}
         for category in Seller.main_categories:
@@ -39,9 +45,13 @@ class Seller(User):
             demand[category] = int(amount_of_orders)
         return sorted(demand.items(), key=lambda x: x[1], reverse = True)
 
+
     def get_best_sellers(self, category="All"):
         """
         Find Best Sellers in chosen category.
+        It gives our seller the opportunity to compare himself with other sellers
+        and get some knowledge from their experience on the market by exploring
+        pages of their internet shops.
         """
         best_sellers = []
         for product in self.get_best_products(category):
@@ -51,13 +61,14 @@ class Seller(User):
 
     def get_product_statistic(self, product_name):
         """
-        Return statistic about product selling.
+        Return dictionary with statistic about product selling, such as price of
+        the product and number of times it had been ordered.
         """
         statistic = {}
         for product in search_products(product_name):
             statistic[product.seller_name] = \
                                 {"price":product.price, "orders":product.orders}
-        return statistic
+        return statistic  
 
 
 

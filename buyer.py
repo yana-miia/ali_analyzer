@@ -3,7 +3,7 @@ from user import User
 
 class Buyer(User):
     """
-    Represent a seller.
+    Represent a buyer.
     Subclass of User.
     """
 
@@ -16,7 +16,7 @@ class Buyer(User):
 
     def get_id(self):
         """
-        Return the d of thge buyer.
+        Return the id of thge buyer.
         """
 
     def get_ratings(self):

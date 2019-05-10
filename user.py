@@ -31,6 +31,7 @@ class User:
         "Hair Extensions & Wigs": 200002489
     }
 
+
     def __init__(self, nickname):
         """
         Initialize a user.
@@ -38,7 +39,12 @@ class User:
         self.nickname = nickname
         self.command_list = []
 
+
     def get_comands(self):
+        """
+        Gives the list with commands which user
+        can use while exploring the market.
+        """
         print(self.command_list)
 
 

@@ -1,4 +1,5 @@
 from user import User
+from ratings import Ratings, SellerRatings, BuyerRatings
 from ALI import get_best_sellings, search_products
 from pprint import pprint
 
@@ -22,6 +23,28 @@ class Buyer(User):
         for i in self.comand_list:
             result += i + '\n'
         return 'Commands of ' + self.nickname + ':\n' + result
+
+
+    def get_best_products(self, category="All"):
+        """
+        Get list of bestselling products in chosen category, sorted with chosen
+        sorting way.
+        """
+        category_id = Seller.main_categories[category]
+        list_of_bests = get_best_sellings(category_id)
+        return list_of_bests
+
+
+    def get_best_sellers(self, category="All"):
+        """
+        Find Best Sellers in chosen category according to their ratings.
+        It gives our buyer the opportunity to find best options for buying products.
+        """
+        best_sellers = []
+        for product in self.get_best_products(category):
+            best_sellers.append(product.seller_name)
+        return best_sellers
+
 
     def get_id(self):
         """

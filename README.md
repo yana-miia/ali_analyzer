@@ -17,7 +17,7 @@
 Список команд Покупця:
 * best products --> Show you the bestselling products.
 * best sellers --> Gives you list of best sellers with their rating.
-* worst seller --> Gives you the list of worst sellers
+* worst sellers --> Gives you the list of worst sellers.
 * best shipping --> Shows you the market with chosen product, where the speed of shipping is the highest.
 * alternative --> Gives you options for buying alternative products.
 

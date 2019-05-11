@@ -1,3 +1,5 @@
+from ali_requests import get_best_sellings
+
 class User:
     """
     Represents a user.
@@ -37,17 +39,26 @@ class User:
         Initialize a user.
         """
         self.nickname = nickname
-        self.command_list = []
+        self.commands = {"best products": "Show you the bestselling products."}
 
 
-    def get_comands(self):
+    def get_best_products(self, category="All"):
         """
-        Gives the list with commands which user
-        can use while exploring the market.
+        Get list of bestselling products in chosen category, sorted with chosen
+        sorting way.
         """
-        print(self.command_list)
+        category_id = User.main_categories[category]
+        list_of_bests = get_best_sellings(category_id)
+        return list_of_bests
+
+
+    def __str__(self):
+        result = ''
+        for command in self.commands:
+            result += command + " --> " + self.commands[command] + '\n'
+        return 'Commands of ' + self.nickname + ':\n\n' + result
 
 
 if __name__ == '__main__':
     user = User("Wall-e")
-    user.get_comands()
+    user.print_commands()

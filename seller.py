@@ -1,6 +1,5 @@
-import time
 from user import User
-from ALI import get_best_sellings, search_products, get_product_info_by_id
+from ali_requests import search_products, get_product_info_by_id
 from pprint import pprint
 
 
@@ -16,17 +15,12 @@ class Seller(User):
         Initialize a seller.
         """
         super().__init__(nickname)
-        self.comand_list = ["search", "analyze"]
-
-
-    def get_best_products(self, category="All"):
-        """
-        Get list of bestselling products in chosen category, sorted with chosen
-        sorting way.
-        """
-        category_id = Seller.main_categories[category]
-        list_of_bests = get_best_sellings(category_id)
-        return list_of_bests
+        self.commands.update({"demand": "Show you market demand with orders.",
+                "trend": "Return 'best products' in top category.",
+                "sellers": "Gives you list of best sellers with their rating.",
+                "statistic": "Show you statistic about product selling with " +\
+                                    "their price, number of orders and profit.",
+                "recommendations": "Gives you expectations on each product."})
 
 
     def find_demand(self):
@@ -80,7 +74,9 @@ class Seller(User):
                                 {"price":product.price,
                                  "orders":product.orders,
                                  "profit":product.price * product.orders}
-        return sorted(statistic.items(), key=lambda x: x[1]["profit"], reverse = True)
+        return sorted(statistic.items(),
+                      key=lambda x: x[1]["profit"],
+                      reverse = True)
 
 
     def _filter_product(self, product_id):
@@ -100,7 +96,6 @@ class Seller(User):
         products = []
         for product_id in list_of_products:
             products.append(self._filter_product(product_id))
-            time.sleep(2000)
         products = sorted(products, key=lambda x: x["orders"], reverse = True)
 
         analyzed_products = []
@@ -114,30 +109,3 @@ class Seller(User):
                                     "predictable profit": predictable_profit}})
 
         return analyzed_products
-
-
-if __name__ == '__main__':
-    seller = Seller("Solomiia")
-
-    #print("Best Selling:")
-    #for i in seller.get_best_products():
-    #    print(i)
-    #print("\n\n\n")
-
-    #print("Demand:")
-    #pprint(seller.find_demand())
-    #print("\n\n\n")
-
-    print("Best Sellers:")
-    pprint(seller.get_best_sellers())
-    print("\n\n\n")
-
-    #print("Statistic about 'phone charger':")
-    #pprint(seller.get_product_statistic('phone charger'))
-    #print("\n\n\n")
-
-    #print("Analyzed:")
-    #for i in seller.get_personal_recommendations([32922653638, 32954832491,
-    #                                             32946396066]):
-    #    print(i)
-    #print("\n\n\n")

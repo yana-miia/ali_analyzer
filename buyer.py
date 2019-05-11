@@ -1,6 +1,6 @@
 from user import User
 from ratings import Ratings, SellerRatings, BuyerRatings
-from ALI import get_best_sellings, search_products
+from ali_requests import get_best_sellings, search_products
 from pprint import pprint
 
 
@@ -15,24 +15,8 @@ class Buyer(User):
         Initialize a buyer.
         """
         super().__init__(nickname)
-        self.comand_list = ["find", "comparate"]
-
-
-    def __str__(self):
-        result = ''
-        for i in self.comand_list:
-            result += i + '\n'
-        return 'Commands of ' + self.nickname + ':\n' + result
-
-
-    def get_best_products(self, category="All"):
-        """
-        Get list of bestselling products in chosen category, sorted with chosen
-        sorting way.
-        """
-        category_id = Buyer.main_categories[category]
-        list_of_bests = get_best_sellings(category_id)
-        return list_of_bests
+        self.command_list.extend(["find",
+                                  "comparate"])
 
 
     def get_best_sellers(self, category="All"):
@@ -65,6 +49,6 @@ class Buyer(User):
 
 if __name__ == '__main__':
     buyer = Buyer("Yana")
-    print(str(buyer))
-    pprint("Best sellers in the category:")
-    print(buyer.get_best_sellers())
+    print(buyer)
+    #print("Best sellers in the category:")
+    #pprint(buyer.get_best_sellers())

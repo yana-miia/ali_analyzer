@@ -35,6 +35,7 @@ class Buyer(User):
             best_sellers.append(product.seller_name)
         return best_sellers
 
+
     def get_worst_sellers(self, category = "ALL"):
         """
         Find Best Sellers in chosen category according to their ratings.
@@ -42,6 +43,8 @@ class Buyer(User):
         products.
         """
         worst_sellers = []
+        # not implemented yet
+
 
     def get_alternative(self, product_name):
         """
@@ -56,17 +59,23 @@ class Buyer(User):
                         alternatives.append(products[i])
         return alternatives
 
+
+    def find_best_shipping(product_id):
+        """
+        """
+        # not implemented yet
+
+
     def get_ratings(self):
         """
         Return the instance of BuyerRatings class, which contains all details
         about the ratings.
         """
+        # not implemented yet
 
 
-
-
-if __name__ == '__main__':
-    buyer = Buyer("Yana")
-    print(buyer)
+# if __name__ == '__main__':
+#     buyer = Buyer("Yana")
+#     print(buyer)
     #print("Best sellers in the category:")
     #pprint(buyer.get_best_sellers())

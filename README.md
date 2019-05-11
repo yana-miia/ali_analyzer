@@ -6,6 +6,21 @@
 
 ## Вхідні та вихідні дані програми
 Користувач обирає свою роль (Покупець/Продавець) та отримує список команд із описом, які для нього доступні.
+Список команд Продавця:
+* best products --> Show you the bestselling products.
+* demand --> Show you market demand with orders.
+* trend --> Return 'best products' in top category.
+* sellers --> Gives you list of best sellers with their rating.
+* statistic --> Show you statistic about product selling with their price, * number of orders and profit.
+* recommendations --> Gives you expectations on each product.
+----
+Список команд Покупця:
+* best products --> Show you the bestselling products.
+* best sellers --> Gives you list of best sellers with their rating.
+* worst seller --> Gives you the list of worst sellers
+* best shipping --> Shows you the market with chosen product, where the speed of shipping is the highest.
+* alternative --> Gives you options for buying alternative products.
+
 Програма видає результати, відповідно до опції, яку обрав користувач, що базуються на аналізі ринку.
 
 ## Структура програми з коротким описом модулів, функцій, класів та методів.
@@ -52,7 +67,7 @@ python3 main.py
 ## Опис тестових прикладів для первірки працездатності програми
 
 
-## Право власності
+## Права власності
 [Яна Крищук](https://github.com/yanakryshchuk-ucu/Coursework)
 
 [Соломія Дубневич](https://github.com/rockqeen45/MarketAnalyzer1)

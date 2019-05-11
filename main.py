@@ -38,7 +38,8 @@ if usertype == 'Seller':
             print(categories)
             print()
             ctgr = input("Choose category from given list:")
-            pprint(seller.get_best_products(ctgr))
+            for prod in seller.get_best_products(ctgr):
+                print(prod)
 
         elif command == "demand":
             pprint(seller.find_demand())

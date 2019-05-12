@@ -6,7 +6,7 @@ nick = input("Hello, I'm AliAnalzer.\nTo help you,"\
                 + "I need to know what is your name?\n")
 print()
 
-usertype = input("You are 'Buyer' or 'Seller'?\n")
+usertype = input("Are you 'Buyer' or 'Seller'?\n")
 print()
 while usertype != 'Buyer' and usertype != 'Seller':
     usertype = input("Wrong type of user!\nEnter 'Seller' or 'Buyer'\n")

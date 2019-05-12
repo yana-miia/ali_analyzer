@@ -96,30 +96,35 @@ elif usertype == 'Buyer':
         elif command == 'best products':
             print(categories, '\n')
             ctgr = input("Choose category from given list: ")
-            pprint(buyer.get_best_products(ctgr))
+            for product in buyer.get_best_products(ctgr):
+                print(product)
 
         elif command == 'best sellers':
             print(categories, '\n')
             ctgr = input("Choose category from given list: ")
-            pprint(buyer.get_best_sellers(ctgr))
+            for seller in buyer.get_best_sellers(ctgr):
+                print(seller)
 
         elif command == 'worst sellers':
             print(categories, '\n')
             ctgr = input("Choose category from given list: ")
-            pprint(buyer.get_worst_sellers(ctgr))
+            for seller in buyer.get_worst_sellers(ctgr):
+                print(seller)
 
         elif command == 'best shipping':
             print("Print type of product")
             print("F.e.: 'phone charger'")
             product = input("Product: ")
-            pprint(buyer.find_best_shipping(product))
+            for ship in buyer.find_best_shipping(product):
+                print(ship)
 
         elif command == 'alternative':
             print("Give me your product name")
             print("F.e.: 'phone charger'")
             product_name = input("Product : ")
             try:
-                pprint(buyer.get_alternative(product_name))
+                for alt in buyer.get_alternative(product_name):
+                    print(alt)
             except ApiException as e:
                 print("Some problems with server data for your input.")
                 print(e)

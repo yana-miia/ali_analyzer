@@ -1,4 +1,4 @@
-![image](https://github.com/yanakryshchuk-ucu/Coursework/blob/master/IMG_20190515_220622_258-02.jpeg)
+![image](https://github.com/yanakryshchuk-ucu/Coursework/blob/master/Images/IMG_20190515_220622_258-02.jpeg)
 
 ## Призначення та коротка характеристика програми
 Тут  представлена курсова робота із дисципліни Основи Програмування. Суть проекту полягає у аналізі попиту на товари та оцінці доброчесності продавців в інтернет-магазинах, досліджуючи дані, які надає інтернет-магазин AliExpress.
@@ -6,6 +6,9 @@
 
 ## Вхідні та вихідні дані програми
 Користувач обирає свою роль (Покупець/Продавець) та отримує список команд із описом, які для нього доступні.
+
+![image](https://github.com/yanakryshchuk-ucu/Coursework/blob/master/Images/Screenshot%20from%202019-05-16%2000-29-54.png)
+
 Список команд Продавця:
 * best products --> Show you the bestselling products.
 * demand --> Show you market demand with orders.

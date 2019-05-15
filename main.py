@@ -2,7 +2,7 @@ from pprint import pprint
 from seller import Seller
 from buyer import Buyer
 
-nick = input("Hello, I'm AliAnalzer.\nTo help you,"\
+nick = input("Hello, I'm AliAnalyzer.\nTo help you,"\
                 + "I need to know what is your name?\n")
 print()
 

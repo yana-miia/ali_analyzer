@@ -105,15 +105,7 @@ class Ratings:
         result = self.three_star_count * 100/ self.total_count
         return round(result, 2)
 
-class SellerRatings(Ratings):
-    """
-    Representation of the ratings of seller.
-    """
 
-    def __init__(self):
-        """
-        Initialization.
-        """
 
     # def get_shipping_speed(self):
     #     """
@@ -123,23 +115,4 @@ class SellerRatings(Ratings):
     #     """
     #
     # def get_communication_level(self):
-    #     """
-    #     Get the average speed of answering to the customers. The communication
-    #     level is measured in numbers in range 1-5.
-    #     """
-    #
-    # def get_item_as_described_rate(self):
-    #     """
-    #     Get the average value in range 1-5 of the
-    #     """
-
-
-class BuyerRatings(Ratings):
-    """
-    Representation of the ratings of buyer.
-    """
-
-    def __init__(self):
-        """
-        Initialization.
-        """
+    #   

@@ -1,5 +1,5 @@
 from user import User
-from ratings import Ratings, SellerRatings, BuyerRatings
+from ratings import Ratings
 from ali_requests import get_best_sellings, search_products
 from pprint import pprint
 
@@ -66,12 +66,7 @@ class Buyer(User):
         # not implemented yet
 
 
-    def get_ratings(self):
-        """
-        Return the instance of BuyerRatings class, which contains all details
-        about the ratings.
-        """
-        # not implemented yet
+
 
 
 # if __name__ == '__main__':

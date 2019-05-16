@@ -121,7 +121,7 @@ elif usertype == 'Buyer':
         elif command == 'alternative':
             print("Give me your product name")
             print("F.e.: 'phone charger'")
-            product_name = input("Product : ")
+            product_name = input("Product: ")
             try:
                 for alt in buyer.get_alternative(product_name):
                     print(alt)

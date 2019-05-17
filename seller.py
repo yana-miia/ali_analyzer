@@ -15,12 +15,12 @@ class Seller(User):
         Initialize a seller.
         """
         super().__init__(nickname)
-        self.commands.update({"demand": "Show you market demand with orders.",
-                "trend": "Return 'best products' in top category.",
-                "sellers": "Gives you list of best sellers with their rating.",
-                "statistic": "Show you statistic about product selling with " +\
+        self.commands.update({"2 - demand": "Show you market demand with orders.",
+                "3 - trend": "Return 'best products' in top category.",
+                "4 - sellers": "Gives you list of best sellers with their rating.",
+                "5 - statistic": "Show you statistic about product selling with " +\
                                     "their price, number of orders and profit.",
-                "recommendations": "Gives you expectations on each product."})
+                "6 - recommendations": "Gives you expectations on each product."})
 
 
     def find_demand(self):
@@ -47,7 +47,7 @@ class Seller(User):
         The most popular categoty --> the most popular products.
         """
         top_category = self.find_demand()[0][0]
-        return get_best_products(top_category)
+        return self.get_best_products(top_category) # added self.
 
 
     def get_best_sellers(self, category="All"):

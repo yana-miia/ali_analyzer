@@ -18,7 +18,7 @@ class Ratings:
 
 
     def __init__(self, five_star_count=None, four_star_count=None, \
-                three_star_count=None, two_star_count=None, one_star_count=None,\
+                three_star_count=None, two_star_count=None,one_star_count=None,\
                 total_count=None, positive_count=None, negative_count=None, \
                 neutral_count=None, ratings=None):
         """
@@ -115,4 +115,4 @@ class Ratings:
     #     """
     #
     # def get_communication_level(self):
-    #   
+    #

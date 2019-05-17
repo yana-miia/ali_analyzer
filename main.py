@@ -2,18 +2,18 @@ from pprint import pprint
 from seller import Seller
 from buyer import Buyer
 
-nick = input("Hello, I'm AliAnalyzer.\nTo help you, "\
+nick = input("Hello! I'm AliAnalyzer.\nTo help you, "\
                 + "I need to know what is your name?\n")
 print()
 
-usertype = input("Are you 'Buyer' or 'Seller'?\n")
+usertype = input("Are you Buyer(enter 1) or Seller(enter 2)?\n")
 print()
-while usertype != 'Buyer' and usertype != 'Seller':
-    usertype = input("Wrong type of user!\nEnter 'Seller' or 'Buyer'\n")
+while usertype != '1' and usertype != '2':
+    usertype = input("Wrong type of user!\nEnter '1' or '2'\n")
     print()
 
 # Seller's author is Solomiia Dubnevych
-if usertype == 'Seller':
+if usertype == '2':
     seller = Seller(nick)
 
     print("Print 'stop' to finish program.")
@@ -28,38 +28,47 @@ if usertype == 'Seller':
 
         print(seller)
         print()
-        command = input("Choose command: ")
-        print()
+        command = input("Choose command №: ")
 
         if command == "stop":
             break
 
-        elif command == "best products":
-            print(categories)
-            print()
+        elif command == "1":
+            print("(best products)", "\n")
+            print("Categories:\n")
+            for category in categories:
+                print(category)
+            print('\n')
             ctgr = input("Choose category from given list:")
             for prod in seller.get_best_products(ctgr):
                 print(prod)
 
-        elif command == "demand":
+        elif command == "2":
+            print("(demand)", "\n")
             pprint(seller.find_demand())
 
-        elif command == "trend":
+        elif command == "3":
+            print("(trend)", "\n")
             pprint(seller.get_trend())
 
-        elif command == "sellers":
-            print(categories)
-            print()
+        elif command == "4":
+            print("(sellers)", "\n")
+            print("Categories:\n")
+            for category in categories:
+                print(category)
+            print('\n')
             ctgr = input("Choose category from given list: ")
             pprint(seller.get_best_sellers(ctgr))
 
-        elif command == "statistic":
+        elif command == "5":
+            print("(statistic)", "\n")
             print("Print type of product")
             print("F.e.: 'phone charger'")
             product = input("Product: ")
             pprint(seller.get_product_statistic(product))
 
-        elif command == "recommendations":
+        elif command == "6":
+            print("(recommendations)", "\n")
             print("Give me a list of your products using their id.")
             print("F.e.: 32922653638, 32954832491")
             products = input("Products: ").split(", ")
@@ -70,12 +79,12 @@ if usertype == 'Seller':
             except ApiException as e:
                 print("Some problems with server data for your input.")
                 print(e)
-
         else:
             print("You called wrong command.")
             print()
 
-elif usertype == 'Buyer':
+# Buyer's author is Yana Kryshchuk
+elif usertype == '1':
 
     buyer = Buyer(nick)
 
@@ -88,43 +97,58 @@ elif usertype == 'Buyer':
 
     while True:
         print(buyer, '\n')
-        command = input('Choose command: ')
+        command = input('Choose command №: ')
 
         if command == 'stop':
             break
-
-        elif command == 'best products':
-            print(categories, '\n')
-            ctgr = input("Choose category from given list: ")
+        # needs to be finished
+        elif command == '1':
+            print("(best products)", "\n")
+            print("Categories:\n")
+            for category in categories:
+                print(category)
+            print('\n')
+            ctgr = input("Choose category from given list:\n")
+            print("Best products in category ", ctgr, ":")
             for product in buyer.get_best_products(ctgr):
                 print(product)
 
-        elif command == 'best sellers':
-            print(categories, '\n')
-            ctgr = input("Choose category from given list: ")
+        elif command == '2':
+            print("(best sellers)", "\n")
+            print("Categories:\n")
+            for category in categories:
+                print(category)
+            print('\n')
+            ctgr = input("Choose category from given list:\n")
+            print("Best sellers in category ", ctgr, ":")
             for seller in buyer.get_best_sellers(ctgr):
                 print(seller)
 
-        elif command == 'worst sellers':
-            print(categories, '\n')
-            ctgr = input("Choose category from given list: ")
+        elif command == '3':
+            print("(worst sellers)", "\n")
+            print("Categories:\n")
+            for category in categories:
+                print(category)
+            print('\n')
+            ctgr = input("Choose category from given list:\n")
+            print("Worst sellers in category ", ctgr, ":")
             for seller in buyer.get_worst_sellers(ctgr):
                 print(seller)
 
-        elif command == 'best shipping':
+        elif command == '4':
+            print("(best shipping)", "\n")
             print("Print type of product")
             print("F.e.: 'phone charger'")
             product = input("Product: ")
+            print("Best shipping options:")
             for ship in buyer.find_best_shipping(product):
                 print(ship)
 
-        elif command == 'alternative':
-            print("Give me your product name")
-            print("F.e.: 'phone charger'")
-            product_name = input("Product: ")
-            try:
-                for alt in buyer.get_alternative(product_name):
-                    print(alt)
-            except ApiException as e:
-                print("Some problems with server data for your input.")
-                print(e)
+        elif command == '5':
+            print("(alternative)", "\n")
+            print("Give me your product ID")
+            print("F.e.: '32922653638'")
+            product_id = input("Product ID:\n")
+            print("Alternatives for the product:")
+            for alt in buyer.get_alternative(product_id):
+                print(alt)

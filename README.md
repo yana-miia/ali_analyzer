@@ -10,19 +10,19 @@
 ![image](https://github.com/yanakryshchuk-ucu/Coursework/blob/master/Images/console-example1.png)
 
 Список команд Продавця:
-* best products --> Show you the bestselling products.
-* demand --> Show you market demand with orders.
-* trend --> Return 'best products' in top category.
-* sellers --> Gives you list of best sellers with their rating.
-* statistic --> Show you statistic about product selling with their price, * number of orders and profit.
-* recommendations --> Gives you expectations on each product.
+* 1 - best products --> Show you the bestselling products.
+* 2 - demand --> Show you market demand with orders.
+* 3 - trend --> Return 'best products' in top category.
+* 4 - sellers --> Gives you list of best sellers with their rating.
+* 5 - statistic --> Show you statistic about product selling with their price, * number of orders and profit.
+* 6 - recommendations --> Gives you expectations on each product.
 ----
 Список команд Покупця:
-* best products --> Show you the bestselling products.
-* best sellers --> Gives you list of best sellers with their rating.
-* worst sellers --> Gives you the list of worst sellers.
-* best shipping --> Shows you the market with chosen product, where the speed of shipping is the highest.
-* alternative --> Gives you options for buying alternative products.
+* 1 - best products --> Show you the bestselling products.
+* 2 - best sellers --> Gives you list of best sellers with their rating.
+* 3 - worst sellers --> Gives you the list of worst sellers.
+* 4 - best shipping --> Shows you the market with chosen product, where the speed of shipping is the highest.
+* 5 - alternative --> Gives you options for buying alternative products.
 
 ![image](https://github.com/yanakryshchuk-ucu/Coursework/blob/master/Images/console-example2.png)
 

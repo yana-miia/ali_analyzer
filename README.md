@@ -7,7 +7,7 @@
 ## Вхідні та вихідні дані програми
 Користувач вводить своє ім'я й обирає роль (Покупець/Продавець) та отримує список команд із описом, які для нього доступні.
 
-![image](https://github.com/yanakryshchuk-ucu/Coursework/blob/master/Images/Screenshot%20from%202019-05-16%2000-29-54.png)
+![image](https://github.com/yanakryshchuk-ucu/Coursework/blob/master/Images/console-example1.png)
 
 Список команд Продавця:
 * best products --> Show you the bestselling products.
@@ -24,6 +24,9 @@
 * best shipping --> Shows you the market with chosen product, where the speed of shipping is the highest.
 * alternative --> Gives you options for buying alternative products.
 
+![image](https://github.com/yanakryshchuk-ucu/Coursework/blob/master/Images/console-example2.png)
+
+
 Програма видає результати, відповідно до опції, яку обрав користувач, що базуються на аналізі ринку.
 
 ## Структура програми з коротким описом модулів, функцій, класів та методів.
@@ -32,7 +35,7 @@
 * ali_request.py - у цьому модулі використовується API та містяться функції, що відповідають за стягнення необхідної для аналізу інформації.
 * user.py - модуль, що містить клас User, який є батьківським для класів Seller та Buyer:
   * get_best_products() - метод для отримання найкращих продуктів у катеорії.
-  * buyer.py - містить клас Buyer з методами, що відповідають за функціонал команд Покупця:
+* buyer.py - містить клас Buyer з методами, що відповідають за функціонал команд Покупця:
   * get_best_sellers() - метод, що відповідає за одержання списку найкращих продавців.
   * get_worst_sellers() -  відповідає за одержання списку найгірших продавців.
   * get_alternative() - повертає список альтернатив обраному продукту.
@@ -43,7 +46,7 @@
   * get_best_sellers() - відповідає за одержання списку найкращих продавців та їх рейтингу.
   * get_product_statistic() - повертає статистику про продукт.
   * filter_product() - отримує відфільтровані дані про продукти.
-  * get_personal_recommendations() - аналізує успіх прожажів внаслідок виходу певного продукту на ринок.
+  * get_personal_recommendations() - аналізує успіх продажів внаслідок виходу певного продукту на ринок.
 
 * product.py - містить класи Product та DetailedProduct - підклас Product.
 * ratings.py - містить клас Ratings:
@@ -86,7 +89,7 @@ python3 main.py
 ## Опис тестових прикладів для первірки працездатності програми
 Тестові приклади містяться у модулі [tests.py](https://github.com/yana-miia/ali_analyzer/blob/master/tests.py).
 
-Для запуску потрібно просто розкоментувати частину, яка Вас цікавить, адже через обмеження кількості запитів на API все одночасно не може бути виконано. 
+Для запуску потрібно просто розкоментувати частину, яка Вас цікавить, адже через обмеження кількості запитів на API все одночасно не може бути виконано.
 
 ## Права власності
 [Яна Крищук](https://github.com/yanakryshchuk-ucu/Coursework)

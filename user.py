@@ -1,4 +1,4 @@
-from ali_requests import get_best_sellings
+from ali_requests import get_best_sellings, get_worst_sellings
 
 class User:
     """
@@ -39,7 +39,7 @@ class User:
         Initialize a user.
         """
         self.nickname = nickname
-        self.commands = {"best products": "Show you the bestselling products."}
+        self.commands = {"1 - best products": "Show you the bestselling products."}
 
 
     def get_best_products(self, category="All"):
@@ -52,6 +52,16 @@ class User:
         return list_of_bests
 
 
+    def get_worst_products(self, category = "All"):
+        """
+        Get list of worst products according to their ratings, sorted with
+        chosen sorting way.
+        """
+        category_id = User.main_categories[category]
+        list_of_bests = get_worst_sellings(category_id)
+        return list_of_bests
+
+
     def __str__(self):
         result = ''
         for command in self.commands:
@@ -59,6 +69,6 @@ class User:
         return 'Commands of ' + self.nickname + ':\n\n' + result
 
 
-if __name__ == '__main__':
-    user = User("Wall-e")
-    user.print_commands()
+# if __name__ == '__main__':
+#     user = User("Wall-e")
+#     user.print_commands()

@@ -7,7 +7,7 @@ from pprint import pprint
 from product import Product, DetailedProduct
 
 configuration = aliseeksapi.Configuration()
-configuration.api_key['X-API-CLIENT-ID'] = "YOUR_API"
+configuration.api_key['X-API-CLIENT-ID'] = "AGGXIQITSUSZVGLY"
 
 
 def form_product(product_diction):
@@ -56,14 +56,13 @@ def form_detailed_product(product_diction):
 
 def get_best_sellings(category_id=None):
     """
-    Get best selling list in chosen category.
+    Get best sellings list in chosen category.
     If you don't set category_id, it will find best selling in all categories.
     """
     api_instance = aliseeksapi.SearchApi(aliseeksapi.ApiClient(configuration))
     search_request = aliseeksapi.SearchRequest(sort="ORDERS",
                                             category=category_id,
                                             sort_direction='DESC')
-
     try:
         api_response = api_instance.search(search_request)
         buffer = ast.literal_eval(str(api_response))["items"]
@@ -74,9 +73,32 @@ def get_best_sellings(category_id=None):
                 result.append(product)
         return result
 
+    except ApiException as e:
+        print("Error when calling SearchApi -> get_best_sellings: %s\n" % e)
+        return None
+
+
+def get_worst_sellings(category_id=None):
+    """
+    Get worst sellings list in chosen category.
+    If you don't set category_id, it will find worst selling in all categories.
+    """
+    api_instance = aliseeksapi.SearchApi(aliseeksapi.ApiClient(configuration))
+    search_request = aliseeksapi.SearchRequest(sort="ITEM_RATING",
+                                            category=category_id,
+                                            sort_direction='ASC')
+    try:
+        api_response = api_instance.search(search_request)
+        buffer = ast.literal_eval(str(api_response))["items"]
+        result = []
+        for diction in buffer:
+            if diction["title"] != None and diction["title"] != "":
+                product = form_product(diction)
+                result.append(product)
+        return result
 
     except ApiException as e:
-        print("Error when calling SearchApi->get_best_sellings: %s\n" % e)
+        print("Error when calling SearchApi -> get_worst_sellings: %s\n" % e)
         return None
 
 
@@ -105,6 +127,32 @@ def search_products(product_name):
         return None
 
 
+def search_similar_products(title, category_id):
+    """
+    Get detailed information about similar products to the given one.
+    """
+    api_instance = aliseeksapi.SearchApi(aliseeksapi.ApiClient(configuration))
+    search_request = aliseeksapi.SearchRequest(text=title,
+                                            sort="BEST_MATCH",
+                                            sort_direction='DESC',
+                                            #category=category_id,
+                                            limit=50)
+    try:
+        api_response = api_instance.search(search_request)
+        # print("Similar products response:", api_response)
+        buffer = ast.literal_eval(str(api_response))["items"]
+        result = []
+        for diction in buffer:
+            if diction["title"] != None and diction["title"] != "":
+                product = form_product(diction)
+                result.append(product)
+        return result
+
+    except ApiException as e:
+        print("Error when calling SearchApi->search_similar_products: %s\n" % e)
+        return None
+
+
 def get_product_info_by_id(product_id):
     """
     Get details about one product by it's id.
@@ -113,6 +161,7 @@ def get_product_info_by_id(product_id):
     search_request = aliseeksapi.ProductRequest(product_id=product_id)
     try:
         api_response = api_instance.get_product_details(search_request)
+        # print("Product details response:", api_response)
         buffer = ast.literal_eval(str(api_response))
         return form_detailed_product(buffer)
 

@@ -1,5 +1,4 @@
 from user import User
-from ratings import Ratings
 from ali_requests import get_best_sellings, search_products, \
     search_similar_products, get_product_info_by_id
 from pprint import pprint

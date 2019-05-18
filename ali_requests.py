@@ -32,7 +32,6 @@ def form_product(product_diction):
                       rating)
     return product
 
-
 def form_detailed_product(product_diction):
     """
     Form DetailedProduct from given dictionary.
@@ -136,10 +135,9 @@ def search_similar_products(title, category_id):
                                             sort="BEST_MATCH",
                                             sort_direction='DESC',
                                             #category=category_id,
-                                            limit=50)
+                                            limit=40)
     try:
         api_response = api_instance.search(search_request)
-        # print("Similar products response:", api_response)
         buffer = ast.literal_eval(str(api_response))["items"]
         result = []
         for diction in buffer:
@@ -161,7 +159,6 @@ def get_product_info_by_id(product_id):
     search_request = aliseeksapi.ProductRequest(product_id=product_id)
     try:
         api_response = api_instance.get_product_details(search_request)
-        # print("Product details response:", api_response)
         buffer = ast.literal_eval(str(api_response))
         return form_detailed_product(buffer)
 
@@ -169,12 +166,36 @@ def get_product_info_by_id(product_id):
         print("Error when calling ProductApi->get_product_info_by_id: %s\n" % e)
         return None
 
+
+def get_shipping(product_id=None):
+    """
+    Get shipping speed of given product.
+    """
+    api_instance = aliseeksapi.ProductsApi(aliseeksapi.ApiClient(configuration))
+    prod_ship_request =aliseeksapi.ProductShippingRequest(product_id=product_id)
+    try:
+        api_response = api_instance.get_product_shipping(prod_ship_request)
+        shipping = 200
+        for option in api_response.options:
+            deliv_time = option.delivery_time
+            average = (deliv_time._from + deliv_time.to) / 2
+            if average < shipping:
+                shipping = average
+
+        return shipping
+
+    except ApiException as e:
+        print("Error when calling ProductApi->get_product_info_by_id: %s\n" % e)
+        return None
+
+
+
 #uncomment blocks to test some function
-if __name__ == "__main__":
-    #for i in get_best_sellings(100003070):
-    #    print(i)
-    #print("\n\n\n")
-
-    #pprint(search_products("phone charger"))
-
-    print(get_product_info_by_id(32826890025))
+# if __name__ == "__main__":
+#     for i in get_best_sellings(100003070):
+#        print(i)
+#     print("\n\n\n")
+#
+#     pprint(search_products("phone charger"))
+#
+#     print(get_product_info_by_id(32826890025))

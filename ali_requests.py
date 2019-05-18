@@ -7,7 +7,7 @@ from pprint import pprint
 from product import Product, DetailedProduct
 
 configuration = aliseeksapi.Configuration()
-configuration.api_key['X-API-CLIENT-ID'] = "AGGXIQITSUSZVGLY"
+configuration.api_key['X-API-CLIENT-ID'] = "RYXLKDJMKVVQZOXO"
 
 
 def form_product(product_diction):

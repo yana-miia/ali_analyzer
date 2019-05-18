@@ -49,7 +49,8 @@ if usertype == '2':
 
         elif command == "3":
             print("(trend)", "\n")
-            pprint(seller.get_trend())
+            for product in seller.get_trend():
+                print(product)
 
         elif command == "4":
             print("(sellers)", "\n")
@@ -101,7 +102,7 @@ elif usertype == '1':
 
         if command == 'stop':
             break
-        
+
         elif command == '1':
             print("(best products)", "\n")
             print("Categories:\n")

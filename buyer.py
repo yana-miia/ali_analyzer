@@ -53,7 +53,7 @@ class Buyer(User):
         return best_sellers
 
 
-    def get_worst_sellers(self, category = "ALL"):
+    def get_worst_sellers(self, category = "All"):
         """
         Find Worst Sellers in chosen category according to their product's
         ratings. It gives our buyer the opportunity to avoid bad options for

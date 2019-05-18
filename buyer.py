@@ -1,7 +1,24 @@
 from user import User
 from ali_requests import get_best_sellings, search_products, \
-    search_similar_products, get_product_info_by_id
+    search_similar_products, get_product_info_by_id, get_shipping
 from pprint import pprint
+
+def short_title(title):
+    """
+    Function to shorten string of the title of the product.
+    """
+    lst = title.split()
+    lst1 = []
+    lst1.append(lst[0])
+    lst1.append(lst[1])
+    lst1.append(lst[2])
+    lst1.append(lst[3])
+    lst1.append(lst[4])
+    lst1.append(lst[5])
+    lst1.append(lst[6])
+    lst1.append(lst[7])
+    prod_name = " ".join(lst1)
+    return prod_name
 
 
 class Buyer(User):
@@ -44,7 +61,7 @@ class Buyer(User):
         """
         worst_sellers = []
         for product in self.get_worst_products(category):
-            worst_sellers.append({product.seller_name: product.seller_rating})
+            worst_sellers.append(product.seller_name)
         return worst_sellers
 
 
@@ -53,28 +70,24 @@ class Buyer(User):
         Return the list of alternative products.
         """
         product = get_product_info_by_id(product_id)
-        print("Looking for alternatives for ", product.title," from category ",\
-            product.category_id)
+        print("Alternatives for ", short_title(product.title),
+        " from category ", product.category_id, ":")
         alternatives = search_similar_products(product.title,\
             product.category_id)
-        print("Alternatives:\n", alternatives)
+        for alternative in alternatives:
+            print((short_title(alternative.title), alternative.seller_name))
         for prod in alternatives:
             if prod.product_id == product_id:
                 alternatives.remove(prod)
         return alternatives
 
 
-    def find_best_shipping(product_id):
+    def find_best_shipping(self, product_name):
         """
+        Get shipping speed of given product.
         """
-        # not implemented yet
-
-
-
-
-
-# if __name__ == '__main__':
-#     buyer = Buyer("Yana")
-#     print(buyer)
-    #print("Best sellers in the category:")
-    #pprint(buyer.get_best_sellers())
+        products = search_products(product_name)
+        result = []
+        for prod in products:
+            result.append((prod.seller_name, get_shipping(prod.product_id)))
+        return result

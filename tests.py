@@ -5,7 +5,7 @@ from buyer import Buyer
 #Uncomment the following blocks to test them
 if __name__ == '__main__':
     seller = Seller("Solomiia")
-    print(seller)
+    # print(seller)
 
     # print("Best Selling:")
     # for product in seller.get_best_products():
@@ -31,9 +31,9 @@ if __name__ == '__main__':
 
 # ----------------------------------------------------------------
 
-    # buyer = Buyer("Yana")
+    buyer = Buyer("Yana")
     # print(buyer)
-    #
+
     # print("Best products:")
     # for product in buyer.get_best_products():
     #     print(product)
@@ -49,8 +49,7 @@ if __name__ == '__main__':
     #     print(seller)
     # print("\n\n\n")
     #
-    # print("Best shipping option:")
-    # print("\n\n\n")
-    #
-    # print("Alternatives for the product:")
+    # print("Best shipping options:")
+    # for ship in buyer.find_best_shipping('phone charger'):
+    #     print(ship)
     # print("\n\n\n")

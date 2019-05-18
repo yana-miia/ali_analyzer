@@ -101,7 +101,7 @@ elif usertype == '1':
 
         if command == 'stop':
             break
-        # needs to be finished
+        
         elif command == '1':
             print("(best products)", "\n")
             print("Categories:\n")
@@ -109,9 +109,10 @@ elif usertype == '1':
                 print(category)
             print('\n')
             ctgr = input("Choose category from given list:\n")
-            print("Best products in category ", ctgr, ":")
+            print("\n", "Best products in category ", ctgr, ":", "\n")
             for product in buyer.get_best_products(ctgr):
                 print(product)
+            print("\n")
 
         elif command == '2':
             print("(best sellers)", "\n")
@@ -120,9 +121,10 @@ elif usertype == '1':
                 print(category)
             print('\n')
             ctgr = input("Choose category from given list:\n")
-            print("Best sellers in category ", ctgr, ":")
+            print("\n", "Best sellers in category ", ctgr, ":", "\n")
             for seller in buyer.get_best_sellers(ctgr):
                 print(seller)
+            print("\n")
 
         elif command == '3':
             print("(worst sellers)", "\n")
@@ -131,24 +133,28 @@ elif usertype == '1':
                 print(category)
             print('\n')
             ctgr = input("Choose category from given list:\n")
-            print("Worst sellers in category ", ctgr, ":")
+            print("\n", "Worst sellers in category ", ctgr, ":", "\n")
             for seller in buyer.get_worst_sellers(ctgr):
                 print(seller)
+            print("\n")
 
         elif command == '4':
             print("(best shipping)", "\n")
             print("Print type of product")
             print("F.e.: 'phone charger'")
-            product = input("Product: ")
-            print("Best shipping options:")
-            for ship in buyer.find_best_shipping(product):
+            product_name = input("Product: ")
+            print("\n", "Best shipping options (seller name and number of " +\
+                "days):", "\n")
+            for ship in buyer.find_best_shipping(product_name):
                 print(ship)
+            print("\n")
 
         elif command == '5':
             print("(alternative)", "\n")
             print("Give me your product ID")
             print("F.e.: '32922653638'")
-            product_id = input("Product ID:\n")
-            print("Alternatives for the product:")
+            product_id = input("Product ID: ")
+            print("\n")
             for alt in buyer.get_alternative(product_id):
                 print(alt)
+            print("\n")
